@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+/* Survive in Moon - presentation theme: deep space surfaces, the game's warm amber accent and its stat colours */
+:root {
+  --space: #05060a;
+  --surface: #0b0d12;
+  --panel: #12151c;
+  --line: rgb(255 255 255 / 0.08);
+  --ink: #f2f1ec;
+  --ink-2: #b9bcc6;
+  --ink-3: #7c808c;
+  --amber: #f9b04f;
+  --amber-deep: #c47f1f;
+  --oxygen: #73c7ff;
+  --food: #f5b35c;
+  --water: #6699ff;
+  --warmth: #ff8c4d;
+  --stamina: #99e68c;
+  --radiation: #d9e64d;
+  --health: #f26b73;
+  /* Flare classes - validated categorical trio on the dark surface */
+  --flare-c: #3987e5;
+  --flare-m: #c47f1f;
+  --flare-x: #c85bd6;
+}
+
+@theme inline {
+  --color-space: var(--space);
+  --color-surface: var(--surface);
+  --color-panel: var(--panel);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-amber: var(--amber);
+  --color-amber-deep: var(--amber-deep);
+  --color-oxygen: var(--oxygen);
+  --font-sans: var(--font-barlow);
+  --font-display: var(--font-condensed);
+  --font-mono: var(--font-mono-jb);
+}
+
+html {
+  background: var(--space);
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--space);
+  color: var(--ink);
+  font-family: var(--font-barlow), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* One slide per screen, snapping */
+.deck {
+  height: 100dvh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+}
+.slide {
+  min-height: 100dvh;
+  scroll-snap-align: start;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Elements fade up when their slide comes into view */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.in-view .reveal {
+  opacity: 1;
+  transform: none;
+}
+.in-view .reveal.d1 { transition-delay: 0.12s; }
+.in-view .reveal.d2 { transition-delay: 0.24s; }
+.in-view .reveal.d3 { transition-delay: 0.36s; }
+.in-view .reveal.d4 { transition-delay: 0.48s; }
+
+/* Twinkling star field behind everything */
+.stars {
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, rgb(255 255 255 / 0.7), transparent),
+    radial-gradient(1px 1px at 70% 80%, rgb(255 255 255 / 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 40% 60%, rgb(255 255 255 / 0.6), transparent),
+    radial-gradient(1px 1px at 85% 20%, rgb(255 255 255 / 0.5), transparent),
+    radial-gradient(1px 1px at 10% 85%, rgb(255 255 255 / 0.4), transparent);
+  background-size: 380px 380px;
+  animation: drift 120s linear infinite;
+}
+@keyframes drift {
+  to { background-position: 380px 760px; }
+}
+
+.kicker {
+  font-family: var(--font-mono-jb), monospace;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--amber);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transition: none; opacity: 1; transform: none; }
+  .stars { animation: none; }
+}

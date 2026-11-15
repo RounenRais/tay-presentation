@@ -1,0 +1,7 @@
+# Netlify: build the static export and publish the out/ folder
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "22"
