@@ -4,12 +4,12 @@
 import { useEffect, useState } from "react";
 
 const chapters = [
-  { day: "Day 1", title: "Launch", img: "/media/earth-epic.png", text: "Our crew of three leaves Earth for the Moon.", note: "Real Earth photo · NASA EPIC / DSCOVR" },
-  { day: "Day 3", title: "Lunar orbit", img: "/media/ship.png", text: "We reach lunar orbit and aim for the south pole." },
-  { day: "Day 4", title: "Descent", img: "/media/moon.png", text: "Landing burn. The main engine starts to shake." },
-  { day: "Day 4", title: "Engine failure", img: "/media/ship.png", text: "The engine dies. We crash far from the landing site.", alarm: true },
-  { day: "Day 5", title: "The crash site", img: "/media/base.png", text: "The base module survived - but air and food won't last." },
-  { day: "Goal", title: "The way home", img: "/media/rover.png", text: "Salvage, build a rover, repair the ship, fly home." },
+  { day: "Day 1", title: "Launch", img: "/media/story-1.jpg", text: "Our crew of three leaves Earth for the Moon.", note: "Earth: NASA EPIC · Moon: NASA LRO" },
+  { day: "Day 3", title: "Lunar orbit", img: "/media/story-2.jpg", text: "We reach lunar orbit and aim for the south pole." },
+  { day: "Day 4", title: "Descent", img: "/media/story-3.jpg", text: "Landing burn. The main engine starts to shake." },
+  { day: "Day 4", title: "Engine failure", img: "/media/story-4.jpg", text: "The engine dies. We crash far from the landing site.", alarm: true },
+  { day: "Day 5", title: "The crash site", img: "/media/story-5.jpg", text: "The base module survived - but air and food won't last." },
+  { day: "Goal", title: "The way home", img: "/media/story-6.jpg", text: "Salvage, build a rover, repair the ship, fly home." },
 ];
 
 export default function Story() {
@@ -27,11 +27,10 @@ export default function Story() {
     <section className="slide flex items-center">
       <div className="stars absolute inset-0 opacity-40" />
       <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-6 md:grid-cols-[1.15fr_1fr] md:px-12">
-        <div className="reveal relative aspect-[4/3] overflow-hidden rounded-3xl border border-line bg-[radial-gradient(ellipse_at_center,#1a1f2b,#06070b_70%)]">
+        <div className="reveal relative aspect-[16/10] overflow-hidden rounded-3xl border border-line bg-black">
           {chapters.map((ch, k) => (
             <img key={k} src={ch.img} alt={ch.title}
-                 className={`absolute inset-0 m-auto max-h-[82%] max-w-[82%] object-contain transition-all duration-700 ${k === i ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}
-                 style={ch.alarm ? { filter: "sepia(1) saturate(4) hue-rotate(-30deg) brightness(0.9)", transform: k === i ? "rotate(-12deg)" : undefined } : undefined} />
+                 className={`absolute inset-0 h-full w-full object-cover transition-all duration-[900ms] ${k === i ? "scale-100 opacity-100" : "scale-105 opacity-0"}`} />
           ))}
           {c.alarm && <div className="absolute inset-0 animate-pulse bg-red-600/10" />}
           {c.note && <p className="absolute bottom-4 left-5 font-mono text-[11px] uppercase tracking-widest text-ink-3">{c.note}</p>}
